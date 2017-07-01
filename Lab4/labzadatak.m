@@ -1,0 +1,23 @@
+pathSlika = 'C:\Users\Igor Farszky\Desktop\FER\DOS\Labos\slike_za_vjezbe\';
+
+img = imread(strcat(pathSlika, 'klis2.png'));
+
+maska = ones(10);
+maska = maska / sum(maska(:));
+
+imgM = conv2(img, maska, 'same');
+
+figure(1);
+subplot(221);
+imagesc(img);
+subplot(222);
+imagesc(imgM);
+subplot(223);
+imagesc(3 .* double(img) - double(imgM));
+subplot(224);
+
+f = guidedfilter(double(img), double(imgM), 100, 3);
+imagesc(double(f));
+
+whos
+colormap(gray);
